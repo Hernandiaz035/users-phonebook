@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import useForm from './hooks/useForm'
+import Input from './components/Input'
+import Card from './components/Card.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const initialForm = { name: "", lastname: "", email: "" }
+
+const App = () => {
+  const [form, handleChange] = useForm(initialForm);
+
+  console.log(form)
+
+  return(
+    <Card>
+      <form>
+        <Input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          label="Name"
+        />
+        <Input
+          name="lastname"
+          value={form.lastname}
+          onChange={handleChange}
+          label="Last name"
+        />
+        <Input
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          label="Email"
+        />
+      </form>
+    </Card>
+  )
 }
 
-export default App;
+export default App
